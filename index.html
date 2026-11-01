@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="uk"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#060a08">
+<title>Червона Кімната</title>
+<style>
+:root{color-scheme:dark;--bg:#060a08;--cd:#0d1612;--c2:#15241c;--tx:#e8f3ea;--mu:#84a392;--ac:#2fd07a;--a2:#9be564;--ln:#22382c;--gd:#e0b84f;--pk:#ff7eb6}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(800px 480px at 80% -10%,#0f2a1c,transparent),radial-gradient(600px 400px at 0 100%,#0a1f2a,transparent);background-color:var(--bg);color:var(--tx);font:16px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif;min-height:100vh;padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0)}
+body.blur #app{filter:blur(24px)}
+#app{max-width:560px;margin:0 auto;padding:14px 14px 100px}
+header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;gap:8px}
+h1{font-size:20px;margin:0;background:linear-gradient(90deg,var(--ac),var(--a2));-webkit-background-clip:text;background-clip:text;color:transparent}
+h2{font-size:18px;margin:18px 0 8px}
+header .row{flex-wrap:nowrap}header h1{font-size:18px}
+nav button{font-size:10px;padding:7px 1px}
+.once{height:150px;border-radius:12px;display:grid;place-items:center;text-align:center;background:repeating-linear-gradient(45deg,#10241a,#10241a 10px,#0b1a13 10px,#0b1a13 20px)}
+.sub{display:flex;gap:6px;overflow-x:auto;margin:6px 0 12px;padding-bottom:4px}
+.sub button{white-space:nowrap;background:var(--c2);border:1px solid var(--ln);color:var(--tx);border-radius:99px;padding:7px 13px;font:inherit;font-size:13px;cursor:pointer}
+.sub button.on{background:linear-gradient(90deg,var(--ac),var(--a2));border-color:transparent}
+.alb{margin:16px 0 6px;color:var(--pk);font-weight:700}
+.lockc{text-align:center;padding:30px 12px}
+.mood{font-size:30px;cursor:pointer;background:none;border:0}
+.dare{font-size:19px;min-height:100px;display:grid;place-items:center;text-align:center;padding:6px}
+.match{border-color:var(--pk);box-shadow:0 0 18px #ff4fa366}
+.heat button,.react button{background:none;border:0;font-size:22px;opacity:.35;cursor:pointer;padding:2px}.heat button.on{opacity:1}
+.react button{opacity:1;background:var(--c2);border-radius:12px;padding:4px 9px;font-size:18px}
+.coin{background:#2a2208;border:1px solid var(--gd);color:var(--gd);border-radius:99px;padding:5px 11px;font-weight:700;font-size:14px}
+.ib{background:var(--cd);border:1px solid var(--ln);color:var(--tx);border-radius:14px;padding:7px 11px;font-size:17px;cursor:pointer}
+nav{position:fixed;left:0;right:0;bottom:0;display:flex;gap:4px;justify-content:center;padding:8px 8px calc(8px + env(safe-area-inset-bottom,0));background:#060a08f2;border-top:1px solid var(--ln);z-index:10}
+nav button{flex:1;max-width:96px;background:var(--cd);border:1px solid var(--ln);color:var(--mu);border-radius:14px;padding:7px 2px;font:inherit;font-size:11px;cursor:pointer}
+nav button.on{color:#fff;background:linear-gradient(135deg,var(--ac),var(--a2));border-color:transparent}
+nav span{display:block;font-size:18px}
+.card{background:var(--cd);border:1px solid var(--ln);border-radius:20px;padding:14px;margin-bottom:14px;position:relative;overflow:hidden}
+.card.a18{border-color:#ff4fa388;box-shadow:0 0 22px #ff4fa333}
+.card h3{margin:6px 0 10px;font-size:19px}
+.f{display:grid;grid-template-columns:92px 1fr;gap:8px;padding:7px 0;border-top:1px solid var(--ln);font-size:15px}
+.f b{color:var(--mu);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.04em;padding-top:2px}
+.price{color:var(--gd);font-weight:700}.nu{color:#bff0c4}
+.card img,.card video,.md img,.md video{width:100%;border-radius:14px;margin:6px 0;max-height:340px;object-fit:cover;background:#000}
+.bl{filter:blur(28px) brightness(.7)}
+.tag{display:inline-block;font-size:11px;padding:2px 9px;border-radius:99px;background:var(--c2);color:var(--mu);margin-right:5px}
+.t18{display:inline-block;font-size:12px;font-weight:800;padding:2px 9px;border-radius:99px;color:#fff;background:var(--pk);margin-right:5px;animation:glow 2s ease-in-out infinite}
+@keyframes glow{0%,100%{box-shadow:0 0 5px #ff4fa3,0 0 12px #ff4fa366}50%{box-shadow:0 0 12px #ff4fa3,0 0 26px #ff4fa3aa}}
+.bar{height:9px;border-radius:9px;background:var(--c2);overflow:hidden;margin-top:4px}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--ac),var(--gd))}
+.btn{background:linear-gradient(90deg,var(--ac),var(--a2));color:#fff;border:0;border-radius:14px;padding:10px 15px;font:inherit;font-weight:600;cursor:pointer}
+.btn.g{background:var(--c2);border:1px solid var(--ln)}.btn:disabled{opacity:.5}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+label{display:block;font-size:12px;color:var(--mu);margin-top:12px;text-transform:uppercase;letter-spacing:.04em}
+input,textarea,select{width:100%;background:var(--c2);border:1px solid var(--ln);border-radius:12px;color:var(--tx);padding:11px;font:inherit;margin-top:5px}
+input[type=checkbox]{width:auto;margin-right:6px}
+.mu{color:var(--mu);font-size:13px}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pc{text-align:center;background:var(--cd);border:1px solid var(--ln);border-radius:20px;padding:14px 8px}
+.av{width:84px;height:84px;border-radius:50%;margin:0 auto 8px;background:var(--c2) center/cover;border:2px solid var(--ac);box-shadow:0 0 18px #2fd07a55;display:grid;place-items:center;font-size:32px}
+.ttl{color:var(--pk);font-weight:700;min-height:22px}
+.fi{padding:8px 0;border-bottom:1px solid var(--ln);font-size:14px}
+.gal{columns:2;column-gap:10px}
+.tile{break-inside:avoid;margin-bottom:10px;border-radius:18px;overflow:hidden;position:relative;background:var(--cd);border:1px solid var(--ln);cursor:pointer}
+.tile.a18{border-color:#ff4fa3aa;box-shadow:0 0 16px #ff4fa344}
+.tile img{width:100%;display:block;min-height:110px;object-fit:cover}
+.tile .ph{height:130px;display:grid;place-items:center;font-size:38px;background:linear-gradient(135deg,#10301f,#0a1a2a)}
+.tile .cap{padding:8px 10px;font-size:14px}.tile .t18{position:absolute;top:8px;left:8px}
+#md{position:fixed;inset:0;background:#000b;z-index:40;display:none}#md.on{display:block}
+.md{position:absolute;left:0;right:0;bottom:0;max-height:92%;overflow:auto;background:var(--bg);border-radius:24px 24px 0 0;border:1px solid var(--ln);padding:16px 14px calc(22px + env(safe-area-inset-bottom,0));max-width:560px;margin:0 auto}
+#toast{position:fixed;top:calc(10px + env(safe-area-inset-top,0));left:50%;transform:translateX(-50%);background:linear-gradient(90deg,var(--ac),var(--a2));padding:11px 16px;border-radius:16px;z-index:70;display:none;max-width:92%;font-weight:600;box-shadow:0 8px 30px #000a}
+#ov{position:fixed;inset:0;z-index:60;background:radial-gradient(circle at 50% 40%,#0f3a24,#060a08 70%);display:none;place-items:center;text-align:center;padding:24px;overflow:hidden}
+#ov.on{display:grid;animation:fi .5s}@keyframes fi{from{opacity:0}}
+#ov .big{font-size:64px;animation:pop 1.2s infinite}@keyframes pop{50%{transform:scale(1.18)}}
+.fl{position:absolute;bottom:-40px;font-size:26px;animation:up 5s linear infinite;opacity:.85}@keyframes up{to{transform:translateY(-115vh) rotate(25deg)}}
+#lock{position:fixed;inset:0;background:var(--bg);display:none;place-items:center;text-align:center;z-index:80}#lock.on{display:grid}
+#lock input{text-align:center;font-size:28px;letter-spacing:10px;width:200px}
+.auth{max-width:400px;margin:9vh auto 0;padding:0 16px}
+
+h1,h2,h3{font-family:"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",Georgia,serif;letter-spacing:.02em}
+h2::before{content:"";display:inline-block;width:4px;height:1em;background:linear-gradient(var(--ac),var(--a2));margin-right:9px;border-radius:2px;vertical-align:-2px}
+#app{position:relative;z-index:2}
+body::before,body::after{content:"";position:fixed;top:0;bottom:0;width:84px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='130' height='520' viewBox='0 0 130 520'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' x2='1'%3E%3Cstop offset='0' stop-color='%23145c38'/%3E%3Cstop offset='.5' stop-color='%2339c179'/%3E%3Cstop offset='1' stop-color='%23145c38'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='14' width='15' height='520' fill='url(%23g)'/%3E%3Crect x='62' width='11' height='520' fill='url(%23g)'/%3E%3Cg fill='%230b3d27'%3E%3Crect x='11' y='70' width='21' height='5' rx='2'/%3E%3Crect x='11' y='190' width='21' height='5' rx='2'/%3E%3Crect x='11' y='320' width='21' height='5' rx='2'/%3E%3Crect x='11' y='450' width='21' height='5' rx='2'/%3E%3Crect x='60' y='120' width='15' height='4' rx='2'/%3E%3Crect x='60' y='260' width='15' height='4' rx='2'/%3E%3Crect x='60' y='400' width='15' height='4' rx='2'/%3E%3C/g%3E%3Cg fill='%2330a867'%3E%3Cpath d='M29 190 Q70 165 112 190 Q70 188 29 190Z'/%3E%3Cpath d='M29 320 Q80 300 118 330 Q75 322 29 320Z'/%3E%3Cpath d='M73 120 Q100 100 128 118 Q100 118 73 120Z'/%3E%3C/g%3E%3C/svg%3E") repeat-y;background-size:84px auto;opacity:.3;pointer-events:none;z-index:0}
+body::before{left:0;transform-origin:top left;animation:sway 9s ease-in-out infinite alternate}
+body::after{right:0;transform:scaleX(-1);animation:sway2 11s ease-in-out infinite alternate}
+@keyframes sway{to{transform:rotate(.9deg)}}@keyframes sway2{from{transform:scaleX(-1)}to{transform:scaleX(-1) rotate(-.9deg)}}
+#petals{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+#petals i{position:absolute;top:-30px;opacity:.5;font-style:normal;animation:fall linear infinite}
+@keyframes fall{to{transform:translate(70px,112vh) rotate(540deg)}}
+.btn{box-shadow:0 6px 18px #2fd07a30;color:#04130b;transition:transform .15s,box-shadow .2s}.btn:active{transform:scale(.95)}.btn.g{color:var(--tx);box-shadow:none}
+nav button.on{color:#04130b;box-shadow:0 0 16px #2fd07a66}
+.coin{animation:cg 3.5s ease-in-out infinite}@keyframes cg{50%{box-shadow:0 0 18px #e0b84f66}}
+.ttl{color:var(--pk)}
+#app.anim .card,#app.anim .tile,#app.anim .pc,#app.anim .bx{animation:rise .55s cubic-bezier(.2,.8,.2,1) both}
+#app.anim .card:nth-child(2),#app.anim .bx:nth-child(2){animation-delay:.06s}#app.anim .card:nth-child(3),#app.anim .bx:nth-child(3){animation-delay:.12s}#app.anim .card:nth-child(4),#app.anim .bx:nth-child(4){animation-delay:.18s}#app.anim .card:nth-child(n+5){animation-delay:.24s}
+@keyframes rise{from{opacity:0;transform:translateY(16px) scale(.98)}}
+.boxes{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.bx{background:var(--cd);border:1px solid var(--ln);border-radius:20px;padding:12px 8px;text-align:center;cursor:pointer;position:relative;transition:transform .2s}.bx:active{transform:scale(.96)}
+.bx.a{border-color:#ff7eb6aa;box-shadow:0 0 18px #ff7eb633}.bx.open{opacity:.6}.bx .t18{position:absolute;top:8px;left:8px}.bt{font-weight:700;margin-top:4px}
+.gift{position:relative;width:78px;height:72px;margin:10px auto 4px;animation:bob 3s ease-in-out infinite}
+.gift .bod{position:absolute;bottom:0;left:0;right:0;height:46px;border-radius:6px;background:linear-gradient(135deg,#145c38,#2fd07a)}
+.gift .bod::before,.gift .lid::before{content:"";position:absolute;left:50%;width:12px;top:0;bottom:0;margin-left:-6px;background:var(--gd)}
+.gift .lid{position:absolute;top:6px;left:-5px;right:-5px;height:22px;border-radius:6px;z-index:2;background:linear-gradient(135deg,#1c7a4a,#4be092);transition:transform .7s cubic-bezier(.3,1.4,.5,1),opacity .7s}
+.gift .lid::after{content:"";position:absolute;left:50%;top:-9px;width:20px;height:14px;margin-left:-10px;border-radius:50% 50% 40% 40%;background:var(--gd)}
+.bx.open .lid{transform:translateY(-12px) rotate(-14deg)}
+@keyframes bob{50%{transform:translateY(-6px)}}
+.gift.big{transform:scale(2.6);margin:70px auto 60px;cursor:pointer;animation:bigbob 3s ease-in-out infinite}@keyframes bigbob{0%,100%{transform:scale(2.6)}50%{transform:scale(2.6) translateY(-5px)}}.gift.big.pop{animation:none;transform:scale(2.6)}.gift.big.pop .lid{transform:translateY(-110px) rotate(-35deg);opacity:0}
+#sx{position:fixed;inset:0;z-index:55;display:none;flex-direction:column;align-items:center;justify-content:center;padding:18px;background:radial-gradient(circle at 50% 35%,#0f3a24,#060a08 72%);overflow:hidden}#sx.on{display:flex;animation:fi .4s}
+#sxb{width:100%;max-width:440px;text-align:center}.stitle{font:700 20px "Hiragino Mincho ProN","Yu Mincho",Georgia,serif;margin-bottom:14px;color:var(--a2)}
+.sxc{position:absolute;top:calc(14px + env(safe-area-inset-top,0));right:14px}
+.scr{position:relative;width:100%;aspect-ratio:4/5;border-radius:18px;overflow:hidden;border:2px solid var(--gd);box-shadow:0 0 34px #e0b84f33}
+.scr>img,.scr>.letter{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;margin:0;border-radius:0}.scr canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none;cursor:none}
+.coinf{position:absolute;left:0;top:0;font-size:38px;pointer-events:none;opacity:0;filter:drop-shadow(0 4px 6px #000a)}
+.letter{padding:26px 22px;background:linear-gradient(#f3efe0,#e4ddc4);color:#1d2b22;font:19px/1.75 "Hiragino Mincho ProN","Yu Mincho",Georgia,serif;white-space:pre-wrap;text-align:left;overflow:auto;border-radius:10px;box-shadow:inset 0 0 0 6px #e4ddc4,inset 0 0 0 7px #b9ae88}
+.rev{animation:rise .8s both}.rev .rimg{width:100%;border-radius:16px;border:2px solid var(--gd);max-height:70vh;object-fit:cover}.rev .letter{max-height:68vh}
+.bp{position:absolute;left:50%;top:44%;font-size:24px;pointer-events:none;animation:burst 1.2s ease-out forwards}@keyframes burst{to{transform:translate(var(--dx),var(--dy)) rotate(360deg);opacity:0}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style></head><body>
+<div id="app"></div><div id="md"><div class="md" id="mdb"></div></div><div id="sx"><div id="sxb"></div></div><div id="toast"></div>
+<div id="ov"><div><div class="big" id="ob">🪙</div><h2 id="ot"></h2><div id="ol" class="mu"></div><p class="mu" style="margin-top:22px">Торкнись, щоб продовжити</p></div></div>
+<div id="lock"><div><div style="font-size:48px">🔒</div><p class="mu" id="lt">PIN</p><input id="pin" type="password" inputmode="numeric" maxlength="6"></div></div>
+<script>
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+const KIND={shop:"🛍 Магазин",wish:"💭 Мрія",quest:"⚡ Квест",drop:"🔒 Новий матеріал"};
+const HINT={shop:"Пропозиції для нього: що вона зробить (монети 🪙)",wish:"Галерея мрій: ціна в гривнях ₴",quest:"Завдання для нього: нагорода в монетах 🪙",drop:"Матеріали, які він відкриває сам"};
+let CFG=JSON.parse(localStorage.getItem("cfg")||"null"),D={users:[],items:[],events:[]},SHA=null,ME=localStorage.getItem("me"),tab="home",edit=null,lastEv=0;
+const meU=()=>D.users.find(u=>u.id===ME),isA=()=>meU()?.role==="admin",him=()=>D.users.find(u=>u.role!=="admin"),her=()=>D.users.find(u=>u.role==="admin");
+const cur=k=>k==="wish"?"₴":"🪙";
+function toast(t){const e=$("#toast");e.textContent=t;e.style.display="block";navigator.vibrate?.([80,40,80]);clearTimeout(toast.t);toast.t=setTimeout(()=>e.style.display="none",4500)}
+
+/* ===== GitHub як база даних ===== */
+const H=()=>({Authorization:"Bearer "+CFG.token,Accept:"application/vnd.github+json"});
+const API=()=>`https://api.github.com/repos/${CFG.repo}/contents/`;
+const dec=b=>new TextDecoder().decode(Uint8Array.from(atob(b.replace(/\s/g,"")),c=>c.charCodeAt(0)));
+const enc=s=>{let t="";new TextEncoder().encode(s).forEach(x=>t+=String.fromCharCode(x));return btoa(t)};
+async function load(){await load0();D.files=D.files||[];D.replies=D.replies||[];D.votes=D.votes||{};D.ideas=D.ideas||[];D.mood=D.mood||{};D.surprises=D.surprises||[]}
+async function load0(){const r=await fetch(API()+"data/db.json?t="+Date.now(),{headers:H(),cache:"no-store"});
+ if(r.status===404){const c=await fetch("https://api.github.com/repos/"+CFG.repo,{headers:H(),cache:"no-store"});
+  if(!c.ok)throw Error("Репозиторій не знайдено або токен не має до нього доступу. Перевір назву й права токена.");
+  D={users:[],items:[],events:[]};SHA=null;return}
+ if(!r.ok)throw Error("GitHub: помилка "+r.status+(r.status===401?" (перевір токен)":r.status===403?" (немає прав)":""));
+ const j=await r.json();D=JSON.parse(dec(j.content));SHA=j.sha}
+async function put(path,b64,sha,msg){const r=await fetch(API()+path,{method:"PUT",headers:H(),body:JSON.stringify({message:msg,content:b64,...(sha?{sha}:{})})});
+ if(!r.ok){const e=new Error(r.status===401?"Токен недійсний або прострочений":r.status===403||r.status===404?"Токен не має права запису (потрібно Contents: Read and write) або репозиторій не знайдено":r.status===413?"Файл завеликий":"GitHub помилка "+r.status);e.status=r.status;throw e}return r.json()}
+async function mutate(fn){for(let n=0;n<4;n++){try{await load();fn(D);const j=await put("data/db.json",enc(JSON.stringify(D)),SHA,"update");SHA=j.content.sha;return}catch(e){if(e.status!==409&&e.status!==422)throw e}}throw Error("Конфлікт, спробуй ще раз")}
+const ev=(d,kind,text)=>{d.events.push({id:uid(),actor:ME,kind,text,ts:Date.now()});if(d.events.length>200)d.events.splice(0,d.events.length-200)};
+const b64of=f=>new Promise(r=>{const x=new FileReader();x.onload=()=>r(x.result.split(",")[1]);x.readAsDataURL(f)});
+async function shrink(f){const im=await createImageBitmap(f),s=Math.min(1,1280/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=im.width*s;c.height=im.height*s;c.getContext("2d").drawImage(im,0,0,c.width,c.height);return c.toDataURL("image/jpeg",.82).split(",")[1]}
+async function up(f){let b,ext;if(f.type.startsWith("image")){b=await shrink(f);ext="jpg"}else{if(f.size>25*1048576)throw Error("Відео більше 25 МБ");b=await b64of(f);ext=(f.name.split(".").pop()||"mp4").slice(0,4).toLowerCase()}
+ const p=`media/${uid()}.${ext}`;await put(p,b,null,"media");return p}
+const cache={};
+async function blob(p){if(cache[p])return cache[p];const r=await fetch(API()+p,{headers:{...H(),Accept:"application/vnd.github.raw+json"}});if(!r.ok)return"";const b=await r.blob();return cache[p]=URL.createObjectURL(new Blob([b],{type:p.endsWith(".jpg")?"image/jpeg":"video/mp4"}))}
+function media(){document.querySelectorAll("[data-m]").forEach(async e=>{const p=e.dataset.m;e.removeAttribute("data-m");e.src=await blob(p)});document.querySelectorAll("[data-bg]").forEach(async e=>{const p=e.dataset.bg;e.removeAttribute("data-bg");e.style.backgroundImage=`url('${await blob(p)}')`})}
+async function hash(pw,salt){const k=await crypto.subtle.importKey("raw",new TextEncoder().encode(pw),"PBKDF2",false,["deriveBits"]);const b=await crypto.subtle.deriveBits({name:"PBKDF2",salt:new TextEncoder().encode(salt),iterations:120000,hash:"SHA-256"},k,256);return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join("")}
+
+/* ===== Підключення, вхід, реєстрація ===== */
+function connectView(m=""){
+ $("#app").innerHTML=`<div class="auth"><h1 style="font-size:26px;text-align:center">🔗 Підключення до GitHub</h1><p class="mu">Один раз на кожному телефоні. Дані лежать у вашому приватному репозиторії.</p>
+ <div class="card"><label>Репозиторій з даними</label><input id="rp" placeholder="ваш-логін/назва-репо" value="${esc(CFG?.repo||"")}"><label>Токен доступу (fine-grained)</label><input id="tk" type="password" placeholder="github_pat_…">
+ <div class="row"><button class="btn" id="cn">Підключити</button></div><p class="mu" id="er">${esc(m)}</p></div></div>`;
+ $("#cn").onclick=async()=>{CFG={repo:$("#rp").value.trim().replace(/^https?:\/\/github\.com\//,"").replace(/\.git$/,"").replace(/\/+$/,""),token:$("#tk").value.trim()};$("#er").textContent="Перевіряю…";try{await load();localStorage.setItem("cfg",JSON.stringify(CFG));start()}catch(e){$("#er").textContent=e.message}}
+}
+function authView(m=""){
+ const full=D.users.length>=2,noA=!her();
+ $("#app").innerHTML=`<div class="auth"><h1 style="font-size:28px;text-align:center">🎋 Червона Кімната</h1><p class="mu" style="text-align:center">Лише для двох · <span class="t18">18+</span></p>
+ <div class="card"><label>Пошта</label><input id="em" type="email" autocomplete="username"><label>Пароль (від 6 символів)</label><input id="pw" type="password" autocomplete="current-password">
+ ${full?"":`<label>Ім’я (для реєстрації)</label><input id="nm"><label>Хто ти?</label><select id="ro">${noA?'<option value="admin">💋 Вона (адмін-панель)</option>':""}<option value="user">😈 Він</option></select>`}
+ <div class="row"><button class="btn" id="li">Увійти</button>${full?"":'<button class="btn g" id="rg">Зареєструватись</button>'}</div><p class="mu" id="er">${esc(m)}</p></div>
+ <p class="mu" style="text-align:center"><a href="#" id="rc" style="color:var(--mu)">Змінити підключення до GitHub</a></p></div>`;
+ $("#rc").onclick=e=>{e.preventDefault();connectView()};
+ $("#li").onclick=async()=>{try{await load();const u=D.users.find(x=>x.email===$("#em").value.trim().toLowerCase());if(!u||u.hash!==await hash($("#pw").value,u.salt))return $("#er").textContent="Невірна пошта чи пароль";localStorage.setItem("me",ME=u.id);enter()}catch(e){$("#er").textContent=e.message}};
+ $("#rg")&&($("#rg").onclick=async()=>{const email=$("#em").value.trim().toLowerCase(),pw=$("#pw").value;if(!email||pw.length<6)return $("#er").textContent="Пошта й пароль від 6 символів";$("#er").textContent="…";
+  try{const id=uid(),salt=uid()+uid(),h=await hash(pw,salt),role=$("#ro").value,name=$("#nm").value.trim();
+   const prev=ME;ME=id;try{await mutate(d=>{if(d.users.length>=2)throw Error("Вже є двоє користувачів");if(d.users.some(u=>u.email===email))throw Error("Пошта вже зареєстрована");if(role==="admin"&&d.users.some(u=>u.role==="admin"))throw Error("Адмін вже є");
+    d.users.push({id,email,salt,hash:h,role,name,bio:"",title:"",avatar:"",coins:0});ev(d,"join",`приєдна${role==="admin"?"лась":"вся"} 💞`)})}catch(e){ME=prev;throw e}
+   localStorage.setItem("me",id);enter()}catch(e){$("#er").textContent=e.message}});
+}
+async function start(){try{await load()}catch(e){return connectView(e.message)}ME&&meU()?enter():authView()}
+async function enter(){
+ document.addEventListener("visibilitychange",()=>{document.body.classList.toggle("blur",document.hidden);if(document.hidden)lock();else poll()});
+ $("#pin").oninput=e=>{if(e.target.value===localStorage.getItem("pin"))$("#lock").classList.remove("on");else if(e.target.value.length>=6){$("#lt").textContent="Невірно";e.target.value=""}};
+ $("#ov").onclick=()=>$("#ov").classList.remove("on");$("#md").onclick=e=>{if(e.target.id==="md")$("#md").classList.remove("on")};
+ lock();render();entrance();lastEv=Math.max(0,...D.events.map(e=>e.ts));setInterval(poll,20000);
+}
+function lock(){if(localStorage.getItem("pin")&&ME){$("#lock").classList.add("on");$("#pin").value=""}}
+async function poll(){if(!ME||document.hidden)return;const old=SHA;try{await load()}catch{return}if(SHA===old)return;
+ const nw=D.events.filter(e=>e.actor!==ME&&e.ts>lastEv);lastEv=Math.max(lastEv,...D.events.map(e=>e.ts));
+ if(nw.length)toast("🔔 "+(isA()?"Він ":"Вона ")+nw[nw.length-1].text);if(tab!=="admin"&&!$("#md").classList.contains("on"))render()}
+function entrance(){
+ const k="seen_"+ME,since=+localStorage.getItem(k)||Date.now()-3*864e5,data=D.events.filter(e=>e.actor!==ME&&e.ts>since).reverse();
+ localStorage.setItem(k,Date.now());if(!data.length)return;
+ const a=isA(),buys=data.filter(e=>e.kind==="buy").length;
+ $("#ob").textContent=a?"🛍":"🪙";
+ $("#ot").textContent=a?(buys?`Він купив у тебе ${buys} ${buys>1?"речі":"річ"} 😍`:"Є новини від нього 💌"):"Вона виклала для тебе щось нове 😈";
+ $("#ol").innerHTML=data.slice(0,5).map(e=>"• "+esc(e.text)).join("<br>")+(data.length>5?`<br>…і ще ${data.length-5}`:"");
+ $("#ov").querySelectorAll(".fl").forEach(x=>x.remove());
+ for(let n=0;n<14;n++){const f=document.createElement("div");f.className="fl";f.textContent=["🪙","🌸","🎋","✨","🍃"][n%5];f.style.left=Math.random()*95+"%";f.style.animationDelay=Math.random()*4+"s";$("#ov").appendChild(f)}
+ $("#ov").classList.add("on");
+}
+
+/* ===== Відображення ===== */
+const avatar=p=>`<div class="av" ${p?.avatar?`data-bg="${esc(p.avatar)}"`:""}>${p?.avatar?"":"👤"}</div>`;
+function mediaTag(p,t,bl){return p?(t==="video"?`<video data-m="${esc(p)}" controls playsinline class="${bl?"bl":""}"></video>`:`<img data-m="${esc(p)}" class="${bl?"bl":""}" alt="">`):""}
+function btns(i,adm){
+ const a=isA();let b="";
+ if(!a&&!adm){
+  if(i.kind==="shop"&&i.status==="open")b=`<button class="btn" data-a="buy" data-i="${i.id}">Купити за ${i.price} 🪙</button>`;
+  if(i.kind==="wish"&&i.status!=="done")b=`<button class="btn" data-a="fund" data-i="${i.id}">Внести ₴ на мрію</button>`;
+  if(i.kind==="quest"&&i.status==="open")b=`<button class="btn" data-a="sub" data-i="${i.id}">Я виконав ✅</button>`;
+  if(i.kind==="drop"&&!i.opened)b=`<button class="btn" data-a="open" data-i="${i.id}">Відкрити 🔓</button>`;
+ }
+ if(adm){if(i.status==="bought")b+=`<button class="btn" data-a="done" data-i="${i.id}">Виконано ✅</button>`;if(i.status==="submitted")b+=`<button class="btn" data-a="ok" data-i="${i.id}">Підтвердити (+${i.price} 🪙)</button>`;
+  b+=`<button class="btn g" data-a="edit" data-i="${i.id}">✏️</button><button class="btn g" data-a="del" data-i="${i.id}">🗑</button>`}
+ return b?`<div class="row">${b}</div>`:"";
+}
+function fields(i){
+ const pct=Math.min(100,i.price?i.funded/i.price*100:0);
+ return `<div class="f"><b>${i.kind==="quest"?"Нагорода":"Ціна"}</b><span class="price">${i.price} ${cur(i.kind)}</span></div>
+ ${i.kind==="wish"?`<div class="f"><b>Зібрано</b><span>${i.funded} з ${i.price} ₴<div class="bar"><i style="width:${pct}%"></i></div></span></div>`:""}
+ ${i.descr?`<div class="f"><b>${i.kind==="wish"?"Що я зроблю":"Опис"}</b><span>${esc(i.descr)}</span></div>`:""}
+ ${i.nuances?`<div class="f"><b>Нюанси</b><span class="nu">${esc(i.nuances)}</span></div>`:""}
+ ${/^https?:\/\//.test(i.link||"")?`<div class="f"><b>Посилання</b><a href="${esc(i.link)}" target="_blank" rel="noopener noreferrer" style="color:var(--a2)">Відкрити ↗</a></div>`:""}`;
+}
+const ST={open:"Відкрито",bought:"Куплено — чекає виконання",submitted:"Чекає підтвердження",done:"Виконано ✅"};
+function card(i,adm){
+ const bl=i.kind==="drop"&&!i.opened&&!isA();
+ return `<div class="card ${i.adult?"a18":""}">${i.adult?'<span class="t18">18+</span>':""}<span class="tag">${KIND[i.kind]}</span><span class="tag">${ST[i.status]||""}</span><h3>${esc(i.title)}</h3>${mediaTag(i.media,i.mtype,bl)}${fields(i)}${btns(i,adm)}</div>`;
+}
+function gallery(){
+ const w=D.items.filter(i=>i.kind==="wish");
+ return `<h2>💭 Галерея мрій</h2><p class="mu">Торкнись фото, щоб побачити все про мрію</p><div class="gal">${w.map(i=>`<div class="tile ${i.adult?"a18":""}" data-w="${i.id}">${i.adult?'<span class="t18">18+</span>':""}${i.media&&i.mtype!=="video"?`<img data-m="${esc(i.media)}" alt="">`:`<div class="ph">${i.media?"🎞️":"💭"}</div>`}<div class="cap"><b>${esc(i.title)}</b><div class="price">${i.price} ₴</div><div class="bar"><i style="width:${Math.min(100,i.price?i.funded/i.price*100:0)}%"></i></div></div></div>`).join("")}</div>${w.length?"":'<p class="mu">Вона ще не додала мрій 😏</p>'}`;
+}
+function detail(id){
+ const i=D.items.find(x=>x.id===id);if(!i)return;const bl=!i.opened2&&!isA()&&i.media2;
+ $("#mdb").innerHTML=`<div class="row" style="margin:0 0 6px;justify-content:space-between"><span>${i.adult?'<span class="t18">18+</span>':""}<span class="tag">${ST[i.status]||""}</span></span><button class="ib" id="mx">✕</button></div><h3 style="margin:4px 0">${esc(i.title)}</h3>${mediaTag(i.media,i.mtype)}${fields(i)}
+ ${i.media2||i.evening?`<h2>🌙 Мій вечір для тебе</h2>${mediaTag(i.media2,i.mtype2,bl)}${bl?`<div class="row"><button class="btn" data-a="open2" data-i="${i.id}">Відкрити 🔓</button></div>`:""}${i.evening&&!bl?`<div class="f" style="grid-template-columns:1fr"><span>${esc(i.evening)}</span></div>`:""}`:""}${btns(i)}`;
+ $("#md").classList.add("on");$("#mx").onclick=()=>$("#md").classList.remove("on");bind();media();
+}
+function render(){
+ const me=meU();if(!me)return authView();
+ const tabs=[["home","🏠","Головна"],["shop","🛍","Магазин"],["wish","💭","Мрії"],["sur","🎁","Сюрпризи"],["files","📁","Папки"],["v18","🔞","18+"],["me","👤","Профіль"]];
+ let body="";
+ if(tab==="admin"&&isA())body=adminView();else if(tab==="me")body=meView();
+ else if(tab==="home")body=`${surBanner()}<div class="pair">${[her(),him()].map(p=>`<div class="pc">${avatar(p)}<b>${esc(p?.name||"—")}</b><div class="ttl">${esc(p?.title||"")}</div><div class="mu">${esc(p?.bio||"")}</div></div>`).join("")}</div>
+  <h2>Що нового</h2>${D.events.slice(-6).reverse().map(e=>`<div class="fi">${e.actor===ME?"Ти":(isA()?"Він":"Вона")} ${esc(e.text)} <span class="mu">· ${new Date(e.ts).toLocaleString("uk",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"})}</span></div>`).join("")||'<p class="mu">Поки тихо.</p>'}
+  <h2>Свіже</h2>${D.items.slice(-3).reverse().map(i=>card(i)).join("")}`;
+ else if(tab==="wish")body=gallery();else if(tab==="sur")body=surView();else if(tab==="files")body=`<h2>📁 Спільна папка</h2><p class="mu">Звичайні фото й відео для вас двох</p>`+filesView("normal");else if(tab==="v18")body=vaultView();
+ else body=`<h2>${KIND[tab]}</h2><p class="mu">${HINT[tab]}</p>`+(D.items.filter(i=>i.kind===tab).reverse().map(i=>card(i)).join("")||'<p class="mu">Тут поки порожньо.</p>');
+ if(tab==="shop"||tab==="quest")body=`<div class="sub"><button class="${tab==="shop"?"on":""}" data-t="shop">🛍 Пропозиції</button><button class="${tab==="quest"?"on":""}" data-t="quest">⚡ Квести</button></div>`+body;
+ $("#app").innerHTML=`<header><h1>🎋 Червона Кімната</h1><div class="row" style="margin:0"><div class="coin">🪙 ${him()?.coins??0}</div>${isA()?'<button class="ib" id="adm">⚙️</button>':""}</div></header>${body}
+ <nav>${tabs.map(([k,i,n])=>`<button class="${k===tab||(k==="shop"&&tab==="quest")?"on":""}" data-t="${k}"><span>${i}</span>${n}</button>`).join("")}</nav>`;
+ document.querySelectorAll("[data-t]").forEach(b=>b.onclick=()=>{tab=b.dataset.t;ANIM=1;render();scrollTo(0,0)});
+ $("#adm")&&($("#adm").onclick=()=>{tab="admin";render()});
+ document.querySelectorAll("[data-w]").forEach(t=>t.onclick=()=>detail(t.dataset.w));
+ bind();bind2();media();
+}
+function meView(){
+ const p=meU();
+ return `<h2>Мій профіль</h2><div class="card" style="text-align:center">${avatar(p)}<div class="ttl">${esc(p.title||"Назву тобі поставить партнерка")}</div><div class="mu">${esc(p.email)}</div></div>
+ <div class="card"><label>Моє ім’я</label><input id="pn" value="${esc(p.name)}"><label>Про мене</label><textarea id="pb" rows="3">${esc(p.bio)}</textarea>
+ <div class="row"><button class="btn" id="ps">💾 Зберегти</button>${isA()?'<button class="btn g" id="ph">📷 Змінити фото</button>':""}</div><input id="pf" type="file" accept="image/*" hidden>${isA()?"":'<p class="mu">Фото в профілі ставить партнерка в адмін-панелі.</p>'}</div>
+ <div class="card"><div class="row" style="margin-top:0"><button class="btn g" id="pc">🔒 PIN на телефон</button><button class="btn g" id="p18">🔞 PIN для 18+</button><button class="btn g" id="st">📊 Статистика</button><button class="btn g" id="lo">🚪 Вийти</button></div><p class="mu" id="sx"></p></div>`;
+}
+function adminView(){
+ const e=edit||{kind:"shop",title:"",price:"",descr:"",nuances:"",link:"",adult:false,evening:""},q=D.items.filter(i=>["bought","submitted"].includes(i.status));
+ return `<h2>⚙️ Адмін-панель</h2><div class="card"><h3>${edit?"Редагувати":"Додати нове"}</h3>
+ <label>Тип</label><select id="k">${Object.entries(KIND).map(([k,v])=>`<option value="${k}" ${k===e.kind?"selected":""}>${v}</option>`).join("")}</select><p class="mu" id="kh"></p>
+ <label>Назва</label><input id="t" value="${esc(e.title)}">
+ <label>Ціна (🪙 монети; для мрії — ₴ гривні)</label><input id="p" type="number" min="0" value="${esc(e.price)}">
+ <label>Опис (що зроблю / про що мрію)</label><textarea id="d" rows="3">${esc(e.descr)}</textarea>
+ <label>Нюанси (що для мене важливо)</label><textarea id="n" rows="2">${esc(e.nuances)}</textarea>
+ <label>Посилання на товар</label><input id="l" value="${esc(e.link)}" placeholder="https://…">
+ <label>Фото або відео ${edit?"(порожньо — не міняти)":""}</label><input id="f" type="file" accept="image/*,video/*">
+ <div id="wx"><label>Моє вечірнє фото/відео до цієї мрії (18+)</label><input id="f2" type="file" accept="image/*,video/*"><label>Що я хочу зробити ввечері</label><textarea id="ev" rows="2">${esc(e.evening)}</textarea></div>
+ <label><input type="checkbox" id="ad" ${e.adult?"checked":""}> Позначити як 18+ (рожеве сяйво)</label>
+ <div class="row"><button class="btn" id="sv">${edit?"Зберегти":"Додати"}</button>${edit?'<button class="btn g" id="ce">Скасувати</button>':""}<span class="mu" id="sm"></span></div></div>
+ <h2>Очікує на тебе (${q.length})</h2>${q.map(i=>card(i,1)).join("")||'<p class="mu">Нічого не чекає.</p>'}
+ <h2>Профілі та монети</h2>${D.users.map(p=>`<div class="card">${avatar(p)}<b>${esc(p.name||p.email)}</b> <span class="mu">${p.role==="admin"?"(ти)":""}</span><label>Назва в профілі (ставиш тільки ти)</label><input data-ti="${p.id}" value="${esc(p.title)}" placeholder="напр. «Моя королева»">
+ ${p.role!=="admin"?`<label>Монети 🪙</label><input data-co="${p.id}" type="number" value="${p.coins}">`:""}<div class="row"><button class="btn g" data-sp="${p.id}">Зберегти</button><button class="btn g" data-ph="${p.id}">📷 Змінити фото</button><input type="file" accept="image/*" hidden data-pf="${p.id}"></div></div>`).join("")}
+ <h2>Усі картки</h2>${D.items.slice().reverse().map(i=>card(i,1)).join("")}`;
+}
+function bind(){
+ document.querySelectorAll("[data-a]").forEach(b=>b.onclick=()=>act(b.dataset.a,b.dataset.i));
+ if($("#k")){const h=()=>{$("#kh").textContent=HINT[$("#k").value];$("#wx").style.display=$("#k").value==="wish"?"block":"none"};h();$("#k").onchange=h;$("#sv").onclick=save;$("#ce")&&($("#ce").onclick=()=>{edit=null;render()});
+  document.querySelectorAll("[data-ph]").forEach(b=>{const id=b.dataset.ph,f=document.querySelector(`[data-pf="${id}"]`);b.onclick=()=>f.click();
+   f.onchange=async e=>{try{if(!isA())throw Error("Лише адмін");toast("Завантажую фото…");const p=await up(e.target.files[0]);await mutate(d=>{d.users.find(u=>u.id===id).avatar=p});toast("Фото оновлено ✅");render()}catch(x){toast(x.message)}}});
+  document.querySelectorAll("[data-sp]").forEach(b=>b.onclick=async()=>{const id=b.dataset.sp,t=document.querySelector(`[data-ti="${id}"]`).value.trim(),c=document.querySelector(`[data-co="${id}"]`);try{await mutate(d=>{const u=d.users.find(x=>x.id===id);u.title=t;if(c)u.coins=+c.value||0});toast("Збережено ✅")}catch(e){toast(e.message)}})}
+ if($("#lo")){$("#lo").onclick=()=>{localStorage.removeItem("me");location.reload()};$("#ph")&&($("#ph").onclick=()=>$("#pf").click());
+  $("#pf").onchange=async e=>{try{if(!isA())throw Error("Фото змінює лише партнерка");toast("Завантажую фото…");const p=await up(e.target.files[0]);await mutate(d=>{d.users.find(u=>u.id===ME).avatar=p});toast("Фото оновлено ✅");render()}catch(x){toast(x.message)}};
+  $("#ps").onclick=async()=>{try{await mutate(d=>{const u=d.users.find(x=>x.id===ME);u.name=$("#pn").value.trim();u.bio=$("#pb").value.trim()});toast("Профіль збережено ✅");render()}catch(x){toast(x.message)}};
+  $("#pc").onclick=()=>{const p=prompt("PIN 4–6 цифр для цього телефона. Порожньо — вимкнути.");if(p!==null){p?localStorage.setItem("pin",p):localStorage.removeItem("pin")}};
+  $("#st").onclick=()=>{const m=D.events.filter(e=>e.actor===ME);$("#sx").textContent=`Твоїх дій: ${m.length} · покупок: ${m.filter(e=>e.kind==="buy").length} · усього подій у вас: ${D.events.length}`}}
+}
+async function save(){
+ const t=$("#t").value.trim();if(!t){$("#sm").textContent="Додай назву";return}$("#sv").disabled=true;$("#sm").textContent="Завантаження…";
+ try{const r={kind:$("#k").value,title:t,price:+$("#p").value||0,descr:$("#d").value.trim(),nuances:$("#n").value.trim(),link:$("#l").value.trim(),adult:$("#ad").checked,evening:$("#ev").value.trim()};
+  const f=$("#f").files[0],f2=$("#f2").files[0];
+  if(f){r.media=await up(f);r.mtype=f.type.startsWith("video")?"video":"image"}
+  if(f2&&r.kind==="wish"){r.media2=await up(f2);r.mtype2=f2.type.startsWith("video")?"video":"image"}
+  await mutate(d=>{if(edit){Object.assign(d.items.find(x=>x.id===edit.id),r)}else{d.items.push({id:uid(),status:"open",funded:0,opened:false,opened2:false,ts:Date.now(),...r});ev(d,"post",`додала ${KIND[r.kind]}: ${t}${r.adult?" · 18+":""}`)}});
+  edit=null;toast("Збережено ✅");render()}catch(e){$("#sm").textContent="Помилка: "+e.message;$("#sv").disabled=false}
+}
+async function act(a,id){
+ const i0=D.items.find(x=>x.id===id);let v=0;
+ if(a==="edit"){edit=i0;$("#md").classList.remove("on");render();scrollTo(0,0);return}
+ if(a==="del"&&!confirm("Видалити назавжди?"))return;
+ if(a==="fund"){v=+prompt("Скільки гривень внести на цю мрію?");if(!(v>0))return}
+ try{await mutate(d=>{const i=d.items.find(x=>x.id===id),me=d.users.find(u=>u.id===ME);if(!i)throw Error("Картку видалено");
+  if(a==="buy"){if(i.status!=="open")throw Error("Вже куплено");if(me.coins<i.price)throw Error("Не вистачає монет 🪙 Заробляй квестами!");me.coins-=i.price;i.status="bought";i.by_user=ME;ev(d,"buy",`купив: ${i.title} за ${i.price} 🪙`)}
+  if(a==="fund"){i.funded+=v;if(i.funded>=i.price)i.status="done";ev(d,"fund",`вніс ${v} ₴ на мрію «${i.title}» (${Math.min(i.funded,i.price)}/${i.price})`)}
+  if(a==="sub"){i.status="submitted";i.by_user=ME;ev(d,"sub",`виконав квест «${i.title}»`)}
+  if(a==="open"){i.opened=true;ev(d,"open",`відкрив матеріал «${i.title}»`)}
+  if(a==="open2"){i.opened2=true;ev(d,"open",`відкрив твоє вечірнє фото до «${i.title}» 🌙`)}
+  if(a==="done"){i.status="done";ev(d,"done",`виконала «${i.title}» ✅`)}
+  if(a==="ok"){if(me.role!=="admin")throw Error("Лише адмін");d.users.find(u=>u.id===i.by_user).coins+=i.price;i.status="done";ev(d,"ok",`підтвердила «${i.title}», нараховано ${i.price} 🪙`)}
+  if(a==="del")d.items.splice(d.items.indexOf(i),1)})}catch(e){toast(e.message)}
+ $("#md").classList.remove("on");render();
+}
+
+/* ===== Папки, розділ 18+, ігри ===== */
+let S18=false,V={sub:"files",shown:{},lvl:0,dare:""};
+document.addEventListener("visibilitychange",()=>{if(document.hidden){S18=false;V.shown={}}});
+const who=id=>id===ME?"Ти":(D.users.find(u=>u.id===id)?.name||"Партнер");
+const fmt=t=>new Date(t).toLocaleString("uk",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"});
+function fileCard(x){
+ const mine=x.by===ME,locked=x.unlock&&x.unlock>Date.now()&&!mine,seen=(x.viewed||[]).includes(ME),ad=x.folder==="adult";let m;
+ if(locked)m=`<div class="once"><div>⏳ Відкриється<br>${fmt(x.unlock)}</div></div>`;
+ else if(x.once&&!mine&&seen&&!V.shown[x.id])m='<div class="once"><div>👁️ Вже переглянуто<br><span class="mu">Одноразове зникло</span></div></div>';
+ else if(!mine&&(x.once||ad)&&!V.shown[x.id])m=`<div class="once"><div>${x.once?"👁️ Одноразовий перегляд":"🔞 18+"}<br><button class="btn" data-fo="${x.id}" style="margin-top:8px">${x.once?"Відкрити 🔓":"Показати"}</button></div></div>`;
+ else m=mediaTag(x.media,x.mtype);
+ const rs=D.replies.filter(r=>r.fileId===x.id).sort((a,b)=>a.ts-b.ts),heat=x.heat||{},myh=heat[ME]||0,oh=Object.entries(heat).find(([k])=>k!==ME);
+ return `<div class="card ${ad?"a18":""}">${ad?'<span class="t18">18+</span>':""}${x.once?'<span class="tag">👁️ одноразове'+(mine?(x.viewed||[]).length?" · відкрито ✅":" · ще не відкрито":"")+'</span>':""}${x.unlock?`<span class="tag">⏳ ${fmt(x.unlock)}</span>`:""}<h3>${esc(x.title||"Без назви")}</h3><div class="mu">${esc(who(x.by))} · ${fmt(x.ts)}</div>${m}
+ ${locked?"":`${mine?`<div class="mu">Оцінка партнера: ${oh?"🪙".repeat(oh[1]):"ще немає"}</div>`:`<div class="heat">${[1,2,3,4,5].map(i=>`<button class="${i<=myh?"on":""}" data-fh="${x.id}:${i}">🪙</button>`).join("")}</div>`}
+ <div class="react row">${["❤️","😈","🥵","😘","🙈"].map(e=>`<button data-fe="${x.id}:${e}">${e}</button>`).join("")}<button data-fs="${x.id}">${(x.fav||[]).includes(ME)?"⭐":"☆"}</button>${mine||isA()?`<button data-fd="${x.id}">🗑</button>`:""}</div>
+ ${rs.map(r=>`<div class="f" style="grid-template-columns:64px 1fr"><b>${esc(who(r.by))}</b><span>${esc(r.emoji||"")}${esc(r.text||"")}</span></div>`).join("")}
+ <div class="row"><input id="fr_${x.id}" placeholder="Відповісти…" style="flex:1;margin:0"><button class="btn" data-fr="${x.id}">➤</button></div>`}</div>`;
+}
+function filesView(f){
+ const list=D.files.filter(x=>x.folder===f).sort((a,b)=>b.ts-a.ts),albs=[...new Set(D.files.filter(x=>x.folder===f).map(x=>x.album).filter(Boolean))];
+ const grp=[...new Set(list.map(x=>x.album||""))];
+ return `<div class="card ${f==="adult"?"a18":""}"><h3>➕ Додати ${f==="adult"?"в папку 18+":"у папку"}</h3>
+ <label>Підпис</label><input id="ft"><label>Альбом (необов’язково)</label><input id="fa" list="al" placeholder="напр. «Наша подорож»"><datalist id="al">${albs.map(a=>`<option value="${esc(a)}">`).join("")}</datalist>
+ <label>Фото або відео</label><input id="ff" type="file" accept="image/*,video/*">
+ <label><input type="checkbox" id="fo"> Одноразовий перегляд (зникне після відкриття)</label>
+ <label>Відкрити для партнера пізніше (необов’язково)</label><input id="fu" type="datetime-local">
+ <div class="row"><button class="btn" id="fb" data-f="${f}">Додати</button><span class="mu" id="fs"></span></div></div>`
+ +(grp.map(a=>`<div class="alb">📁 ${esc(a||"Без альбому")}</div>`+list.filter(x=>(x.album||"")===a).map(fileCard).join("")).join("")||'<p class="mu">Папка поки порожня.</p>');
+}
+async function addFile(folder){
+ const f=$("#ff").files[0];if(!f){toast("Обери файл");return}
+ $("#fb").disabled=true;$("#fs").textContent="Завантаження…";
+ try{const media=await up(f),mtype=f.type.startsWith("video")?"video":"image",u=$("#fu").value?new Date($("#fu").value).getTime():0,once=$("#fo").checked,title=$("#ft").value.trim(),album=$("#fa").value.trim();
+  await mutate(d=>{d.files.push({id:uid(),folder,by:ME,title,album,media,mtype,once,unlock:u,viewed:[],heat:{},fav:[],ts:Date.now()});ev(d,"file",`додав(ла) ${mtype==="video"?"відео":"фото"} у ${folder==="adult"?"папку 18+ 🔞":"спільну папку 📁"}${once?" (одноразове)":""}${u?" · відкриється пізніше":""}`)});
+  toast("Додано ✅");render()}catch(e){$("#fs").textContent="Помилка: "+e.message;$("#fb").disabled=false}
+}
+async function fa(a,id,v){
+ try{await mutate(d=>{const x=d.files.find(f=>f.id===id);if(!x)throw Error("Файл видалено");const t=x.title||"файл";
+  if(a==="open"){if(!(x.viewed||[]).includes(ME))x.viewed=[...(x.viewed||[]),ME];ev(d,"open",`відкрив(ла) одноразове «${t}» 👁️`)}
+  if(a==="heat"){x.heat={...(x.heat||{}),[ME]:v};ev(d,"heat",`оцінив(ла) «${t}» на ${"🪙".repeat(v)}`)}
+  if(a==="react"){d.replies.push({id:uid(),fileId:id,by:ME,emoji:v,text:"",ts:Date.now()});ev(d,"react",`реакція ${v} на «${t}»`)}
+  if(a==="reply"){d.replies.push({id:uid(),fileId:id,by:ME,emoji:"",text:v,ts:Date.now()});ev(d,"reply",`відповів(ла) на «${t}»: ${v.slice(0,50)}`)}
+  if(a==="fav"){const f=x.fav||[];x.fav=f.includes(ME)?f.filter(k=>k!==ME):[...f,ME]}
+  if(a==="del"){if(x.by!==ME&&!d.users.find(u=>u.id===ME&&u.role==="admin"))throw Error("Видаляти може автор або адмін");d.files.splice(d.files.indexOf(x),1);d.replies=d.replies.filter(r=>r.fileId!==id)}})}catch(e){toast(e.message)}
+ render();
+}
+function vaultView(){
+ if(!S18)return `<div class="card lockc"><div style="font-size:48px">🔞</div><h3>Розділ 18+</h3><p class="mu">Лише для дорослих. Тут особисті матеріали та ігри для двох.</p>${localStorage.getItem("pin18")?'<input id="g18" type="password" inputmode="numeric" placeholder="PIN для 18+" style="text-align:center">':""}<div class="row" style="justify-content:center"><button class="btn" id="e18">Мені є 18, увійти</button></div><p class="mu" id="g18m"></p></div>`;
+ const subs=[["files","📁 Файли"],["drop","🔒 Дроп"],["match","💞 Матч бажань"],["game","🎲 Правда чи дія"],["mood","🌡 Настрій"]];
+ return `<h2>🔞 Розділ 18+</h2><div class="sub">${subs.map(([k,n])=>`<button class="${V.sub===k?"on":""}" data-sub="${k}">${n}</button>`).join("")}<button data-sub="lock">🔒 Закрити</button></div>`
+  +(V.sub==="files"?filesView("adult"):V.sub==="drop"?(D.items.filter(i=>i.kind==="drop").reverse().map(i=>card(i)).join("")||'<p class="mu">Дропів поки немає.</p>'):V.sub==="match"?matchView():V.sub==="game"?gameView():moodView());
+}
+const IDEAS=["Масаж з олійками","Вечір при свічках","Ніч без телефонів","Спільна ванна чи душ","Рольова гра","Побачення з завданнями","Сюрприз-вечір","Танець наодинці","Сніданок у ліжко","Вечір кіно під ковдрою","Лист-фантазія","Новий образ чи білизна"];
+function matchView(){
+ const all=[...IDEAS.map((t,i)=>({id:"i"+i,t})),...D.ideas.map(x=>({id:x.id,t:x.t}))],pu=D.users.find(u=>u.id!==ME)?.id;
+ return `<p class="mu">Кожен відповідає таємно. Показуємо лише збіги: «Так + Так» або «Так + Може». Відповідь «Ні» не бачить ніхто.</p>
+ <div class="card"><label>Додати свою ідею</label><input id="ni"><div class="row"><button class="btn g" id="na">Додати</button></div></div>`
+ +all.map(x=>{const v=D.votes[x.id]||{},my=v[ME],pv=pu&&v[pu],m=my==="y"&&pv==="y",sm=my&&pv&&!m&&my!=="n"&&pv!=="n";
+  return `<div class="card ${m?"match":""}"><b>${esc(x.t)}</b>${m?'<div class="price">💞 Збіг! Обоє хочете</div>':sm?'<div class="nu">🤞 Є шанс, обговоріть</div>':""}
+  <div class="row">${[["y","👍 Так"],["m","🤔 Може"],["n","👎 Ні"]].map(([k,l])=>`<button class="btn ${my===k?"":"g"}" data-v="${x.id}:${k}">${l}</button>`).join("")}</div>${my&&!pv?'<p class="mu">Чекаємо на відповідь партнера…</p>':""}</div>`}).join("");
+}
+async function vote(id,k){
+ try{await mutate(d=>{const pu=d.users.find(u=>u.id!==ME)?.id,v=d.votes[id]=d.votes[id]||{};const was=v[ME];v[ME]=k;if(k==="y"&&pu&&v[pu]==="y"&&was!=="y")ev(d,"match","у «Матчі бажань» з’явився новий збіг 💞")})}catch(e){toast(e.message)}
+ render();
+}
+const DARES=[["Лагідно",["Правда: що в мені тебе вразило з першого погляду?","Правда: який наш спогад твій улюблений?","Дія: скажи комплімент, якого ще не казав(ла)","Дія: 1 хвилина масажу плечей"]],["Гаряче",["Правда: у якому образі я тобі подобаюсь найбільше?","Правда: яке наше побачення було найромантичніше?","Дія: напиши коротку записку-фантазію про наш вечір","Дія: поцілуй так, як на першому побаченні"]],["Дуже гаряче",["Правда: про що ти мрієш, але ще не наважувався(лась) сказати?","Правда: який вечір для нас ти вважаєш ідеальним?","Дія: обери один збіг із «Матчу» й заплануй його","Дія: 10 хвилин повної уваги тільки партнеру"]]];
+function gameView(){
+ return `<div class="sub">${DARES.map(([n],i)=>`<button class="${V.lvl===i?"on":""}" data-lv="${i}">${n}</button>`).join("")}</div><div class="card"><div class="dare">${esc(V.dare||"Натисни «Наступне», щоб витягнути картку")}</div><div class="row" style="justify-content:center"><button class="btn" id="gn">🎲 Наступне</button></div></div>`;
+}
+function moodView(){
+ const pu=D.users.find(u=>u.id!==ME),my=D.mood[ME],pm=pu&&D.mood[pu.id],inv=D.invite&&Date.now()-D.invite.ts<864e5?D.invite:null;
+ return `<div class="card"><b>Мій настрій сьогодні</b><div class="row">${["😴","😊","😘","🥰","😍"].map(e=>`<button class="mood" data-mo="${e}" style="${my?.e===e?"filter:drop-shadow(0 0 8px #ff4fa3)":"opacity:.5"}">${e}</button>`).join("")}</div><input id="mt" placeholder="Коротка нотатка" value="${esc(my?.t||"")}"><div class="row"><button class="btn g" id="ms">Зберегти нотатку</button></div></div>
+ <div class="card"><b>Настрій партнера</b><div style="font-size:34px">${pm?.e||"—"}</div><div class="mu">${esc(pm?.t||"")}</div></div>
+ <div class="card"><b>💌 Запрошення на вечір</b>${inv?(inv.by===ME?`<p>Ти запросив(ла). ${inv.ans?"Відповідь: "+esc(inv.ans):"Чекаємо на відповідь…"}</p>`:inv.ans?`<p>Твоя відповідь: ${esc(inv.ans)}</p>`:`<p>Тебе запрошують на вечір 💌</p><div class="row">${["Так 💚","Пізніше ⏳","Не сьогодні 🙏"].map(a=>`<button class="btn g" data-ia="${a}">${a}</button>`).join("")}</div>`):`<p class="mu">М’яке запрошення без слів.</p><div class="row"><button class="btn" id="mi">Запросити на вечір 💌</button></div>`}</div>`;
+}
+const M=(fn)=>mutate(fn).catch(e=>toast(e.message)).then(render);
+function bind2(){
+ $("#app").classList.toggle("anim",!!ANIM);ANIM=0;
+ document.querySelectorAll("[data-sx]").forEach(b=>b.onclick=()=>{const q=D.surprises.find(x=>x.id===b.dataset.sx);if(q.unlock&&q.unlock>Date.now()&&q.by!==ME)return toast("Відкриється "+fmt(q.unlock)+" ⏳");openSx(q.id)});
+ $("#sk")&&($("#sk").onchange=()=>{const l=$("#sk").value==="letter";$("#sfw").style.display=l?"none":"block";$("#stw").style.display=l?"block":"none"},$("#sk").onchange());
+ $("#sb")&&($("#sb").onclick=addSur);
+ document.querySelectorAll("[data-sub]").forEach(b=>b.onclick=()=>{if(b.dataset.sub==="lock")S18=false;else V.sub=b.dataset.sub;render()});
+ $("#e18")&&($("#e18").onclick=()=>{const p=localStorage.getItem("pin18");if(p&&$("#g18").value!==p){$("#g18m").textContent="Невірний PIN";return}S18=true;render()});
+ $("#p18")&&($("#p18").onclick=()=>{const p=prompt("PIN для розділу 18+ (4–6 цифр). Порожньо — вимкнути.");if(p!==null){p?localStorage.setItem("pin18",p):localStorage.removeItem("pin18");toast("Готово ✅")}});
+ $("#fb")&&($("#fb").onclick=()=>addFile($("#fb").dataset.f));
+ document.querySelectorAll("[data-fo]").forEach(b=>b.onclick=async()=>{const id=b.dataset.fo,x=D.files.find(f=>f.id===id);V.shown[id]=true;if(x.once&&x.by!==ME)await fa("open",id);else render()});
+ document.querySelectorAll("[data-fh]").forEach(b=>b.onclick=()=>{const[i,n]=b.dataset.fh.split(":");fa("heat",i,+n)});
+ document.querySelectorAll("[data-fe]").forEach(b=>b.onclick=()=>{const[i,e]=b.dataset.fe.split(":");fa("react",i,e)});
+ document.querySelectorAll("[data-fr]").forEach(b=>b.onclick=()=>{const i=b.dataset.fr,t=$("#fr_"+i).value.trim();if(t)fa("reply",i,t)});
+ document.querySelectorAll("[data-fs]").forEach(b=>b.onclick=()=>fa("fav",b.dataset.fs));
+ document.querySelectorAll("[data-fd]").forEach(b=>b.onclick=()=>{if(confirm("Видалити назавжди?"))fa("del",b.dataset.fd)});
+ document.querySelectorAll("[data-v]").forEach(b=>b.onclick=()=>{const[i,k]=b.dataset.v.split(":");vote(i,k)});
+ $("#na")&&($("#na").onclick=()=>{const t=$("#ni").value.trim();if(t)M(d=>{d.ideas.push({id:uid(),t,by:ME});ev(d,"idea","додав(ла) нову ідею в «Матч бажань»")})});
+ document.querySelectorAll("[data-lv]").forEach(b=>b.onclick=()=>{V.lvl=+b.dataset.lv;V.dare="";render()});
+ $("#gn")&&($("#gn").onclick=()=>{const a=DARES[V.lvl][1];V.dare=a[Math.floor(Math.random()*a.length)];render()});
+ document.querySelectorAll("[data-mo]").forEach(b=>b.onclick=()=>M(d=>{d.mood[ME]={e:b.dataset.mo,t:$("#mt")?.value.trim()||"",ts:Date.now()};ev(d,"mood","змінив(ла) настрій на "+b.dataset.mo)}));
+ $("#ms")&&($("#ms").onclick=()=>M(d=>{d.mood[ME]={...(d.mood[ME]||{e:"😊"}),t:$("#mt").value.trim(),ts:Date.now()}}));
+ $("#mi")&&($("#mi").onclick=()=>M(d=>{d.invite={by:ME,ts:Date.now(),ans:""};ev(d,"invite","запрошує тебе на вечір 💌")}));
+ document.querySelectorAll("[data-ia]").forEach(b=>b.onclick=()=>M(d=>{d.invite.ans=b.dataset.ia;ev(d,"invite","відповів(ла) на запрошення: "+b.dataset.ia)}));
+}
+
+/* ===== Сюрпризи ===== */
+let ANIM=1;
+(function(){const p=document.createElement("div");p.id="petals";for(let i=0;i<9;i++){const e=document.createElement("i");e.textContent=["🌸","🍃","🌸","🍃","🪷"][i%5];e.style.cssText=`left:${Math.random()*100}%;animation-duration:${11+Math.random()*9}s;animation-delay:${-Math.random()*14}s;font-size:${12+Math.random()*10}px`;p.appendChild(e)}document.body.appendChild(p)})();
+const surBanner=()=>{const n=D.surprises.filter(s=>s.by!==ME&&!(s.openedBy||[]).includes(ME)).length;return n?`<div class="card" data-t="sur" style="cursor:pointer;text-align:center;border-color:var(--gd)">🎁 Нових сюрпризів: <b>${n}</b>. Торкнись, щоб відкрити</div>`:""};
+function boxTile(s,own){
+ const op=(s.openedBy||[]).includes(ME),lk=s.unlock&&s.unlock>Date.now();
+ return `<div class="bx ${op&&!own?"open":""} ${s.adult?"a":""}" data-sx="${s.id}">${s.adult?'<span class="t18">18+</span>':""}<div class="gift"><i class="lid"></i><i class="bod"></i></div><div class="bt">${esc(s.title)}</div><div class="mu">${own?((s.openedBy||[]).length?"✨ відкрито партнером":"ще не відкрито"):op?"✨ відкрито":lk?"⏳ "+fmt(s.unlock):s.mode==="scratch"?"🪙 стерти монеткою":"📦 відкрити"}</div></div>`;
+}
+function surView(){
+ const mine=D.surprises.filter(s=>s.by===ME).sort((a,b)=>b.ts-a.ts),inc=D.surprises.filter(s=>s.by!==ME).sort((a,b)=>b.ts-a.ts);
+ return `<h2>🎁 Сюрпризи</h2><p class="mu">Торкнись коробочки, щоб відкрити. Деякі сховані під захисним шаром: його треба стерти пальцем, як монеткою.</p>
+ <h2>Для тебе (${inc.length})</h2><div class="boxes">${inc.map(s=>boxTile(s)).join("")||'<p class="mu">Поки немає. Скоро щось з’явиться 🌸</p>'}</div>
+ <div class="card" style="margin-top:16px"><h3>🎋 Приготувати сюрприз для партнера</h3>
+ <label>Назва на коробочці</label><input id="st2" placeholder="напр. «Лише для тебе»">
+ <label>Що всередині</label><select id="sk"><option value="photo">📷 Фото</option><option value="letter">💌 Лист</option></select>
+ <div id="sfw"><label>Фото</label><input id="sf" type="file" accept="image/*"></div>
+ <div id="stw"><label>Текст листа</label><textarea id="stx" rows="5"></textarea></div>
+ <label>Як відкривається</label><select id="sm2"><option value="box">📦 Коробочка: торкнутись</option><option value="scratch">🪙 Стерти захисний шар монеткою</option></select>
+ <label>Відкрити не раніше (необов’язково)</label><input id="su" type="datetime-local">
+ <label><input type="checkbox" id="sa"> Позначити як 18+</label>
+ <div class="row"><button class="btn" id="sb">Надіслати сюрприз</button><span class="mu" id="ss"></span></div></div>
+ <h2>Надіслані тобою (${mine.length})</h2><div class="boxes">${mine.map(s=>boxTile(s,1)).join("")||'<p class="mu">Ти ще нічого не надсилав(ла).</p>'}</div>`;
+}
+async function addSur(){
+ const t=$("#st2").value.trim()||"Сюрприз для тебе",kind=$("#sk").value,mode=$("#sm2").value,f=$("#sf").files[0],txt=$("#stx").value.trim();
+ if(kind==="photo"&&!f)return toast("Обери фото");if(kind==="letter"&&!txt)return toast("Напиши лист");
+ $("#sb").disabled=true;$("#ss").textContent="Завантаження…";
+ try{const media=kind==="photo"?await up(f):"",unlock=$("#su").value?new Date($("#su").value).getTime():0,adult=$("#sa").checked;
+  await mutate(d=>{d.surprises.push({id:uid(),by:ME,title:t,kind,mode,media,text:kind==="letter"?txt:"",adult,unlock,openedBy:[],ts:Date.now()});ev(d,"sur","приготував(ла) для тебе новий сюрприз 🎁"+(adult?" · 18+":""))});
+  toast("Сюрприз надіслано ✅");render()}catch(e){$("#ss").textContent="Помилка: "+e.message;$("#sb").disabled=false}
+}
+const CL='<button class="ib sxc" onclick="closeSx()">✕</button>';
+function closeSx(){$("#sx").classList.remove("on");$("#sxb").innerHTML="";render()}
+function burst(){const h=$("#sx");for(let i=0;i<22;i++){const e=document.createElement("span");e.className="bp";e.textContent=["🪙","🌸","✨","🍃"][i%4];const a=Math.random()*6.28,d=90+Math.random()*150;e.style.setProperty("--dx",Math.cos(a)*d+"px");e.style.setProperty("--dy",Math.sin(a)*d-40+"px");h.appendChild(e);setTimeout(()=>e.remove(),1300)}}
+function scramble(el,t){const ch="竹桜月花雪風愛夢◆※",n=t.length;let i=0;const iv=setInterval(()=>{i+=Math.ceil(n/40);el.textContent=t.slice(0,i)+[...t.slice(i)].map(c=>/\s/.test(c)?c:ch[Math.floor(Math.random()*ch.length)]).join("");if(i>=n){clearInterval(iv);el.textContent=t}},35)}
+async function finishOpen(s){if(s.by===ME||(s.openedBy||[]).includes(ME))return;try{await mutate(d=>{const x=d.surprises.find(q=>q.id===s.id);if(x&&!(x.openedBy||[]).includes(ME)){x.openedBy=[...(x.openedBy||[]),ME];ev(d,"sur",`відкрив(ла) сюрприз «${x.title}» 🎉`)}})}catch(e){}}
+function content(s){return s.kind==="photo"?`<img class="rimg" data-m="${esc(s.media)}" alt="">`:`<div class="letter" id="ltr"></div>`}
+function reveal(s,anim){$("#sxb").innerHTML=`<div class="stitle">${esc(s.title)}</div><div class="rev">${content(s)}</div>`+CL;media();if(s.kind==="letter"){const el=$("#ltr");anim?scramble(el,s.text):el.textContent=s.text}if(anim){burst();finishOpen(s)}}
+function openSx(id){
+ const s=D.surprises.find(x=>x.id===id);if(!s)return;$("#sx").classList.add("on");
+ if(s.by===ME||(s.openedBy||[]).includes(ME)&&s.mode!=="scratch")return reveal(s,false);
+ if(s.mode==="scratch")return scratch(s);
+ $("#sxb").innerHTML=`<div class="stitle">${esc(s.title)}</div><div class="gift big" id="bg"><i class="lid"></i><i class="bod"></i></div><p class="mu">Торкнись коробочки 🎁</p>`+CL;
+ let once=0;$("#bg").onclick=()=>{if(once++)return;$("#bg").classList.add("pop");burst();setTimeout(()=>reveal(s,true),900)};
+}
+function paintTop(c,im,W,H){
+ if(im){const r=Math.max(W/im.naturalWidth,H/im.naturalHeight),sw=W/r,sh=H/r,t=document.createElement("canvas");t.width=14;t.height=Math.max(8,Math.round(14*H/W));t.getContext("2d").drawImage(im,(im.naturalWidth-sw)/2,(im.naturalHeight-sh)/2,sw,sh,0,0,t.width,t.height);c.imageSmoothingEnabled=true;c.imageSmoothingQuality="high";c.drawImage(t,0,0,W,H)}else{c.fillStyle="#12301f";c.fillRect(0,0,W,H)}
+ c.fillStyle="rgba(6,22,14,.6)";c.fillRect(0,0,W,H);c.font="600 24px serif";c.fillStyle="rgba(120,230,170,.3)";
+ for(let i=0;i<80;i++)c.fillText("竹桜月花雪風愛夢"[i%8],Math.random()*W,Math.random()*H);
+ c.textAlign="center";c.font="700 17px system-ui";c.fillStyle="rgba(255,255,255,.85)";c.fillText("🪙 Сотри, щоб розблокувати",W/2,H/2);
+}
+function scratch(s){
+ const under=s.kind==="photo"?`<img data-m="${esc(s.media)}" id="uimg" alt="">`:`<div class="letter" id="ltr">${esc(s.text)}</div>`;
+ $("#sxb").innerHTML=`<div class="stitle">${esc(s.title)}</div><div class="scr">${under}<canvas id="cv"></canvas><div class="coinf" id="cf">🪙</div></div><p class="mu">Води пальцем: стирай захисний шар, як монеткою</p>`+CL;media();
+ const cv=$("#cv"),W=cv.clientWidth||320,H=cv.clientHeight||400;cv.width=W;cv.height=H;const c=cv.getContext("2d");if(!c)return;
+ const im=$("#uimg"),go=()=>paintTop(c,im&&im.naturalWidth?im:null,W,H);
+ if(im){im.complete&&im.naturalWidth?go():(go(),im.addEventListener("load",()=>{c.globalCompositeOperation="source-over";c.clearRect(0,0,W,H);go()}))}else go();
+ let down=0,last=null,n=0,done=0;const cf=$("#cf");
+ const pos=e=>{const r=cv.getBoundingClientRect();return[(e.clientX-r.left)*W/r.width,(e.clientY-r.top)*H/r.height,e.clientX-r.left,e.clientY-r.top]};
+ const check=()=>{if(done)return;const d=c.getImageData(0,0,W,H).data;let k=0,t=0;for(let i=3;i<d.length;i+=64){t++;if(d[i]<40)k++}if(k/t>.5){done=1;cv.style.transition="opacity .9s";cv.style.opacity=0;cf.remove();burst();if(s.kind==="letter")scramble($("#ltr"),s.text);finishOpen(s)}};
+ const mv=e=>{const[x,y]=pos(e);c.globalCompositeOperation="destination-out";c.lineWidth=50;c.lineCap=c.lineJoin="round";c.beginPath();c.moveTo(...(last||[x,y]));c.lineTo(x,y);c.stroke();last=[x,y];if(++n%12===0)check()};
+ cv.onpointerdown=e=>{down=1;cv.setPointerCapture(e.pointerId);last=null;mv(e)};
+ cv.onpointermove=e=>{const p=pos(e);cf.style.opacity=1;cf.style.transform=`translate(${p[2]-20}px,${p[3]-20}px) rotate(${n*8}deg)`;if(down)mv(e)};
+ cv.onpointerup=cv.onpointercancel=()=>{down=0;last=null;check()};
+}
+
+CFG?start():connectView();
+</script></body></html>
